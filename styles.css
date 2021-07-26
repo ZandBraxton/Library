@@ -12,3 +12,19 @@ html {
     box-sizing: inherit;
     /* outline: 1px solid red !important; */
 }
+.books {
+    display: flex;
+    flex-flow: row;
+}
+
+.row {
+    background-color: #32de21;
+    padding: 20px;
+    margin: 20px;
+    outline: 2px solid black;
+}
+
+.cell {
+    font-size: 24px;
+    padding: 5px;
+}
