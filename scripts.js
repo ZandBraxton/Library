@@ -31,6 +31,17 @@ function createTableRow() {
     let row = document.createElement('div')
     row.classList.add('row')
     books.appendChild(row)
+    createButton(row);
+}
+
+function createButton(row) {
+    let button = document.createElement('button')
+    button.value = "Delete"
+    button.textContent = "Delete"
+    button.addEventListener('click', function() {
+        this.parentElement.remove()
+    })
+    row.appendChild(button)
 }
 
 
