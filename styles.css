@@ -28,3 +28,10 @@ html {
     font-size: 24px;
     padding: 5px;
 }
+
+.new-book {
+    width: 300px;
+    height: 100px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
