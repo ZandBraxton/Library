@@ -1,35 +1,23 @@
-const theHobbit = new Books('The Hobbit', 'J.R.R. Tolkien', '295 pages', false)
-const mazeRunner = new Books('Maze Runner', 'James Dashner', '375 pages', true)
-const hungerGames = new Books('The Hunger Games', 'Suzanne Collins', '374 pages', false)
-
 const btn = document.querySelector('.new-book')
 btn.addEventListener('click', () => {
+    // Doesn't allow multiple forms to be generated
     let checkForm = document.querySelector('form')
     if (checkForm === null) {
         newBook()
     }
 })
-
-// let myLibrary = [theHobbit, mazeRunner, hungerGames]
 let myLibrary = []
 
-
-if (localStorage['myLibrary'] === undefined) {
-    myLibrary = []
-} else {
+if (localStorage['myLibrary'] != undefined) {
     let stored_data = JSON.parse(localStorage['myLibrary'])
     myLibrary = stored_data
-}
-
-
-
-
+} 
 
 const books = document.getElementById('table')
 display(myLibrary)
 
 
-// display(myLibrary)
+// Displays initial library
 function display (myLibrary) {
     for (let i = 0; i < myLibrary.length; i++) {
         createTableRow(i);
@@ -78,6 +66,7 @@ function createDelButton(row) {
     delButton.value = "Delete"
     delButton.textContent = "Delete"
     delButton.addEventListener('click', function() {
+        //Deletes row and object from array
         this.parentElement.remove()
         let param = this.parentElement.id
         for (let i = 0; i < myLibrary.length; i++) {
@@ -98,6 +87,7 @@ function createReadButton(row) {
     readButton.value = "Read"
     readButton.textContent = "Read"
     readButton.addEventListener('click', function() {
+        //Updates row and array to reflect new read status
         let param = this.parentElement.id
         for (let i = 0; i < myLibrary.length; i++) {
             let index = myLibrary[i]['title']
@@ -143,13 +133,12 @@ function newBook() {
     form.appendChild(label)
     form.appendChild(read)
     form.appendChild(submit)
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function() {
         let j = myLibrary.length + 1
         for (let i = myLibrary.length; i < j; i++) {
             myLibrary[i] = new Books(title.value, author.value, pages.value, read.checked)
             addBook(myLibrary)
             localStorage['myLibrary'] = JSON.stringify(myLibrary);
-            event.preventDefault();
             formDiv.removeChild(form)
         }
     })
@@ -179,13 +168,3 @@ function updateRead(i, index) {
     const row = document.getElementById(index)
     row.lastChild.textContent = (myLibrary[i]['read'])
 }
-
-
-//Add new book button that brings up a form
-//let form = prompt(author, title, number of pages, read)
-//add it to array of objects
-
-//Add a button that toggles read status
-//this.read = true/false
-
-//make Array titles match index so the splice function works
