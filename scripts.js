@@ -48,6 +48,9 @@ function createCell(i) {
         cell.classList.add('cell')
         cell.id = key
         cell.textContent = myLibrary[i][key]
+        if (myLibrary[i][key] === "Haven't read yet") {
+            row[i].classList.add('not-read')
+        }
         row[i].appendChild(cell)  
     }
 }
@@ -161,13 +164,16 @@ function Books(title, author, pages, read) {
 }
 
 function updateRead(i, index) {
+    const row = document.getElementById(index)
     if (myLibrary[i]['read'] === "Finished") {
         myLibrary[i]['read'] = "Haven't read yet"
+        row.classList.add('not-read')
         localStorage['myLibrary'] = JSON.stringify(myLibrary);
     } else {
         myLibrary[i]['read'] = "Finished"
+        row.classList.remove('not-read')
         localStorage['myLibrary'] = JSON.stringify(myLibrary);
     }
-    const row = document.getElementById(index)
     row.lastChild.textContent = (myLibrary[i]['read'])
 }
+

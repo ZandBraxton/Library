@@ -10,11 +10,13 @@ html {
 
 *, *::before, *::after {
     box-sizing: inherit;
-    /* outline: 1px solid red !important; */
+    outline: 1px solid red !important;
 }
 .books {
     display: flex;
     flex-flow: row wrap;
+    margin: auto;
+    width: 100%;
 }
 
 .row {
@@ -22,6 +24,16 @@ html {
     padding: 20px;
     margin: 20px;
     outline: 2px solid black;
+    width: 300px;
+    height: auto;
+}
+
+.read {
+    background-color: #32de21;
+}
+
+.not-read {
+    background-color: red;
 }
 
 .cell {
