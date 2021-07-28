@@ -116,11 +116,15 @@ function newBook() {
     form.appendChild(read)
     form.appendChild(submit)
     form.addEventListener('submit', function(event) {
-        const Harry = new Books(title.value, author.value, pages.value, read.checked)
-        myLibrary.push(Harry);
-        addBook(myLibrary)
-        event.preventDefault();
+        let j = myLibrary.length + 1
+        for (let i = myLibrary.length; i < j; i++) {
+            myLibrary[i] = new Books(title.value, author.value, pages.value, read.checked)
+            addBook(myLibrary)
+            event.preventDefault();
+            formDiv.removeChild(form)
+        }
     })
+    console.log(myLibrary)
     formDiv.appendChild(form)
 }
 
