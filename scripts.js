@@ -20,17 +20,31 @@ display(myLibrary)
 // display(myLibrary)
 function display (myLibrary) {
     for (let i = 0; i < myLibrary.length; i++) {
-            createTableRow(i);
-            const row = document.querySelectorAll('.row')
-            for (let key in myLibrary[i]) {
-                let cell = document.createElement('div');
-                cell.classList.add('cell')
-                cell.id = key
-                cell.textContent = myLibrary[i][key]
-                row[i].appendChild(cell)
-            }
+        createTableRow(i);
+        const row = document.querySelectorAll('.row')
+        for (let key in myLibrary[i]) {
+            let cell = document.createElement('div');
+            cell.classList.add('cell')
+            cell.id = key
+            cell.textContent = myLibrary[i][key]
+            row[i].appendChild(cell)
         }
     }
+}
+
+function addBook (myLibrary) {
+    for (let i = myLibrary.length - 1; i < myLibrary.length; i++) {
+        createTableRow(i)
+        const row = document.querySelectorAll('.row')
+        for (let key in myLibrary[i]) {
+            let cell = document.createElement('div');
+            cell.classList.add('cell')
+            cell.id = key
+            cell.textContent = myLibrary[i][key]
+            row[i].appendChild(cell)
+        }
+    }    
+}
 
 function createTableRow(i) {
     let row = document.createElement('div')
@@ -104,7 +118,7 @@ function newBook() {
     form.addEventListener('submit', function(event) {
         const Harry = new Books(title.value, author.value, pages.value, read.checked)
         myLibrary.push(Harry);
-        display(myLibrary)
+        addBook(myLibrary)
         event.preventDefault();
     })
     formDiv.appendChild(form)
