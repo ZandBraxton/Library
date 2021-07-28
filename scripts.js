@@ -20,14 +20,7 @@ display(myLibrary)
 function display (myLibrary) {
     for (let i = 0; i < myLibrary.length; i++) {
         createTableRow(i);
-        const row = document.querySelectorAll('.row')
-        for (let key in myLibrary[i]) {
-            let cell = document.createElement('div');
-            cell.classList.add('cell')
-            cell.id = key
-            cell.textContent = myLibrary[i][key]
-            row[i].appendChild(cell)
-        }
+        createCell(i)
     }
 }
 
@@ -35,28 +28,27 @@ function addBook (myLibrary) {
     if (myLibrary.length === 0) {
         for (let i = 0; i < 1; i++) {
             createTableRow(i)
-            const row = document.querySelectorAll('.row')
-            for (let key in myLibrary[i]) {
-                let cell = document.createElement('div');
-                cell.classList.add('cell')
-                cell.id = key
-                cell.textContent = myLibrary[i][key]
-                row[i].appendChild(cell)
-                }
-            }
-} else {
-    for (let i = myLibrary.length - 1; i < myLibrary.length; i++) {
-        createTableRow(i)
-        const row = document.querySelectorAll('.row')
-        for (let key in myLibrary[i]) {
-            let cell = document.createElement('div');
-            cell.classList.add('cell')
-            cell.id = key
-            cell.textContent = myLibrary[i][key]
-            row[i].appendChild(cell)  
-            }    
-        }
-    }    
+            createCell(i)
+        }    
+    } else {
+        for (let i = myLibrary.length - 1; i < myLibrary.length; i++) {
+            createTableRow(i)
+            createCell(i)
+        }    
+    }
+}
+
+
+
+function createCell(i) {
+    const row = document.querySelectorAll('.row')
+    for (let key in myLibrary[i]) {
+        let cell = document.createElement('div');
+        cell.classList.add('cell')
+        cell.id = key
+        cell.textContent = myLibrary[i][key]
+        row[i].appendChild(cell)  
+    }
 }
 
 function createTableRow(i) {
