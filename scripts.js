@@ -3,7 +3,12 @@ const mazeRunner = new Books('Maze Runner', 'James Dashner', '375 pages', true)
 const hungerGames = new Books('The Hunger Games', 'Suzanne Collins', '374 pages', false)
 
 const btn = document.querySelector('.new-book')
-btn.addEventListener('click', newBook)
+btn.addEventListener('click', () => {
+    let checkForm = document.querySelector('form')
+    if (checkForm === null) {
+        newBook()
+    }
+})
 
 // let myLibrary = [theHobbit, mazeRunner, hungerGames]
 let myLibrary = []
