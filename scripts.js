@@ -105,16 +105,19 @@ function newBook() {
     const formDiv = document.getElementById('form')
     const title = document.createElement('input')
     title.required = true
+    title.setAttribute('autocomplete', 'off')
     title.setAttribute('type', 'text');
     title.setAttribute('name', 'Title')
     title.setAttribute('placeholder', 'Title')
     const author = document.createElement('input')
     author.required = true
+    author.setAttribute('autocomplete', 'off')
     author.setAttribute('type', 'text');
     author.setAttribute('name', 'Author')
     author.setAttribute('placeholder', 'Author')
     const pages = document.createElement('input')
     pages.required = true
+    pages.setAttribute('autocomplete', 'off')
     pages.setAttribute('type', 'number');
     pages.setAttribute('name', 'Pages')
     pages.setAttribute('placeholder', 'Number of Pages')
