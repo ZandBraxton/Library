@@ -5,16 +5,10 @@ const hungerGames = new Books('The Hunger Games', 'Suzanne Collins', '374 pages'
 const btn = document.querySelector('.new-book')
 btn.addEventListener('click', newBook)
 
-let myLibrary = [theHobbit, mazeRunner, hungerGames]
-// let myLibrary = []
+// let myLibrary = [theHobbit, mazeRunner, hungerGames]
+let myLibrary = []
 const books = document.getElementById('table')
 display(myLibrary)
-
-
-
-
-
-
 
 
 // display(myLibrary)
@@ -33,6 +27,19 @@ function display (myLibrary) {
 }
 
 function addBook (myLibrary) {
+    if (myLibrary.length === 0) {
+        for (let i = 0; i < 1; i++) {
+            createTableRow(i)
+            const row = document.querySelectorAll('.row')
+            for (let key in myLibrary[i]) {
+                let cell = document.createElement('div');
+                cell.classList.add('cell')
+                cell.id = key
+                cell.textContent = myLibrary[i][key]
+                row[i].appendChild(cell)
+                }
+            }
+} else {
     for (let i = myLibrary.length - 1; i < myLibrary.length; i++) {
         createTableRow(i)
         const row = document.querySelectorAll('.row')
@@ -41,7 +48,8 @@ function addBook (myLibrary) {
             cell.classList.add('cell')
             cell.id = key
             cell.textContent = myLibrary[i][key]
-            row[i].appendChild(cell)
+            row[i].appendChild(cell)  
+            }    
         }
     }    
 }
@@ -49,7 +57,7 @@ function addBook (myLibrary) {
 function createTableRow(i) {
     let row = document.createElement('div')
     row.classList.add('row')
-    row.id = i
+    row.id = myLibrary[i]['title']
     books.appendChild(row)
     createReadButton(row);
     createDelButton(row);
@@ -61,12 +69,13 @@ function createDelButton(row) {
     delButton.textContent = "Delete"
     delButton.addEventListener('click', function() {
         this.parentElement.remove()
-        console.log(myLibrary[title])
-        let param = this.nextSibling.firstChild.textContent
-        console.log(param)
-        console.log(myLibrary.indexOf(param))
-        myLibrary.splice(this.parentElement.id, 1)
-        console.log(myLibrary)
+        let param = this.parentElement.id
+        for (let i = 0; i < myLibrary.length; i++) {
+            let index = myLibrary[i]['title']
+            if (param === index) {
+                myLibrary.splice(i, 1)
+            }
+        }
     })
     row.appendChild(delButton)
 }
@@ -78,8 +87,13 @@ function createReadButton(row) {
     readButton.value = "Read"
     readButton.textContent = "Read"
     readButton.addEventListener('click', function() {
-        let index = this.parentElement.id
-        updateRead(index)
+        let param = this.parentElement.id
+        for (let i = 0; i < myLibrary.length; i++) {
+            let index = myLibrary[i]['title']
+            if (param === index) {
+                updateRead(i, index)
+            }
+        }
     })
     row.appendChild(readButton)
 }
@@ -89,14 +103,17 @@ function newBook() {
     const form = document.createElement('form')
     const formDiv = document.getElementById('form')
     const title = document.createElement('input')
+    title.required = true
     title.setAttribute('type', 'text');
     title.setAttribute('name', 'Title')
     title.setAttribute('placeholder', 'Title')
     const author = document.createElement('input')
+    author.required = true
     author.setAttribute('type', 'text');
     author.setAttribute('name', 'Author')
     author.setAttribute('placeholder', 'Author')
     const pages = document.createElement('input')
+    pages.required = true
     pages.setAttribute('type', 'number');
     pages.setAttribute('name', 'Pages')
     pages.setAttribute('placeholder', 'Number of Pages')
@@ -124,7 +141,6 @@ function newBook() {
             formDiv.removeChild(form)
         }
     })
-    console.log(myLibrary)
     formDiv.appendChild(form)
 }
 
@@ -140,14 +156,14 @@ function Books(title, author, pages, read) {
     }
 }
 
-function updateRead(index) {
-    if (myLibrary[index]['read'] === "Finished") {
-        myLibrary[index]['read'] = "Haven't read yet"
+function updateRead(i, index) {
+    if (myLibrary[i]['read'] === "Finished") {
+        myLibrary[i]['read'] = "Haven't read yet"
     } else {
-        myLibrary[index]['read'] = "Finished"
+        myLibrary[i]['read'] = "Finished"
     }
     const row = document.getElementById(index)
-    row.lastChild.textContent = (myLibrary[index]['read'])
+    row.lastChild.textContent = (myLibrary[i]['read'])
 }
 
 
