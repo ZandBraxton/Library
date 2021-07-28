@@ -12,6 +12,19 @@ btn.addEventListener('click', () => {
 
 // let myLibrary = [theHobbit, mazeRunner, hungerGames]
 let myLibrary = []
+
+
+if (localStorage['myLibrary'] === undefined) {
+    myLibrary = []
+} else {
+    let stored_data = JSON.parse(localStorage['myLibrary'])
+    myLibrary = stored_data
+}
+
+
+
+
+
 const books = document.getElementById('table')
 display(myLibrary)
 
@@ -71,6 +84,7 @@ function createDelButton(row) {
             let index = myLibrary[i]['title']
             if (param === index) {
                 myLibrary.splice(i, 1)
+                localStorage['myLibrary'] = JSON.stringify(myLibrary);
             }
         }
     })
@@ -134,6 +148,7 @@ function newBook() {
         for (let i = myLibrary.length; i < j; i++) {
             myLibrary[i] = new Books(title.value, author.value, pages.value, read.checked)
             addBook(myLibrary)
+            localStorage['myLibrary'] = JSON.stringify(myLibrary);
             event.preventDefault();
             formDiv.removeChild(form)
         }
@@ -156,8 +171,10 @@ function Books(title, author, pages, read) {
 function updateRead(i, index) {
     if (myLibrary[i]['read'] === "Finished") {
         myLibrary[i]['read'] = "Haven't read yet"
+        localStorage['myLibrary'] = JSON.stringify(myLibrary);
     } else {
         myLibrary[i]['read'] = "Finished"
+        localStorage['myLibrary'] = JSON.stringify(myLibrary);
     }
     const row = document.getElementById(index)
     row.lastChild.textContent = (myLibrary[i]['read'])
