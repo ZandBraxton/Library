@@ -70,8 +70,6 @@ function createTableRow(i) {
     row.classList.add('row')
     row.id = myLibrary[i]['title']
     books.appendChild(row)
-    // createReadButton(row);
-    // createDelButton(row);
 }
 
 function createDelButton(row) {
@@ -184,6 +182,10 @@ function updateRead(i, index) {
         row.classList.remove('not-read')
         localStorage['myLibrary'] = JSON.stringify(myLibrary);
     }
-    row.lastChild.textContent = (myLibrary[i]['read'])
+    for (let j = 0; j < row.children.length; j++) {
+        if (j === 3) {
+            row.children[j].textContent = (myLibrary[i]['read'])
+        }
+    } localStorage['myLibrary'] = JSON.stringify(myLibrary);
 }
 

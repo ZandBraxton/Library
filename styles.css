@@ -22,6 +22,8 @@ html {
 }
 
 .row {
+    display: flex;
+    flex-flow: column;
     background-color: #32de21;
     padding: 20px;
     margin: 20px;
@@ -33,6 +35,7 @@ html {
 .row button {
     width: 100%;
     height: auto;
+    bottom: 0;
 }
 
 .read {
