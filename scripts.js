@@ -22,6 +22,9 @@ function display (myLibrary) {
     for (let i = 0; i < myLibrary.length; i++) {
         createTableRow(i);
         createCell(i)
+        const row = document.getElementById(myLibrary[i]['title'])
+        createDelButton(row);
+        createReadButton(row);
     }
 }
 
@@ -30,11 +33,17 @@ function addBook (myLibrary) {
         for (let i = 0; i < 1; i++) {
             createTableRow(i)
             createCell(i)
+            const row = document.getElementById(myLibrary[i]['title'])
+            createDelButton(row);
+            createReadButton(row);
         }    
     } else {
         for (let i = myLibrary.length - 1; i < myLibrary.length; i++) {
             createTableRow(i)
             createCell(i)
+            const row = document.getElementById(myLibrary[i]['title'])
+            createDelButton(row);
+            createReadButton(row);
         }    
     }
 }
@@ -52,7 +61,8 @@ function createCell(i) {
             row[i].classList.add('not-read')
         }
         row[i].appendChild(cell)  
-    }
+        
+    } 
 }
 
 function createTableRow(i) {
@@ -60,8 +70,8 @@ function createTableRow(i) {
     row.classList.add('row')
     row.id = myLibrary[i]['title']
     books.appendChild(row)
-    createReadButton(row);
-    createDelButton(row);
+    // createReadButton(row);
+    // createDelButton(row);
 }
 
 function createDelButton(row) {
@@ -155,7 +165,7 @@ function newBook() {
 function Books(title, author, pages, read) {
     this.title = title
     this.author = author
-    this.pages = pages
+    this.pages = `${pages} pages`
     if (read === true) {
         this.read = "Finished"
     } else {

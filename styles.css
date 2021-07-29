@@ -30,6 +30,11 @@ html {
     height: auto;
 }
 
+.row button {
+    width: 100%;
+    height: auto;
+}
+
 .read {
     background-color: #32de21;
 }
@@ -40,6 +45,7 @@ html {
 
 .cell {
     font-size: 24px;
+    font-family: 'Times New Roman', Times, serif;
     overflow-wrap: break-word;
     padding: 5px;
 }
