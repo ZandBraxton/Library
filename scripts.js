@@ -132,7 +132,7 @@ function newBook() {
     read.setAttribute('value', 'true')
     const submit = document.createElement('input')
     submit.setAttribute('type', 'submit')
-    submit.setAttribute('value', 'submit')
+    submit.setAttribute('value', 'Submit')
     form.appendChild(title)
     form.appendChild(author)
     form.appendChild(pages)
