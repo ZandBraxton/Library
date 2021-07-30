@@ -49,7 +49,6 @@ function addBook (myLibrary) {
 }
 
 
-
 function createCell(i) {
     const row = document.querySelectorAll('.row')
     for (let key in myLibrary[i]) {
@@ -76,6 +75,7 @@ function createDelButton(row) {
     let delButton = document.createElement('button')
     delButton.value = "Delete"
     delButton.textContent = "Delete"
+    delButton.id = "deleteBtn"
     delButton.addEventListener('click', function() {
         //Deletes row and object from array
         this.parentElement.remove()
@@ -97,6 +97,7 @@ function createReadButton(row) {
     let readButton = document.createElement('button')
     readButton.value = "Read"
     readButton.textContent = "Read"
+    readButton.id = "readBtn"
     readButton.addEventListener('click', function() {
         //Updates row and array to reflect new read status
         let param = this.parentElement.id
@@ -148,6 +149,13 @@ function newBook() {
     form.appendChild(read)
     form.appendChild(submit)
     form.addEventListener('submit', function() {
+        let checker = title.value
+        for (let n = 0; n < myLibrary.length; n++) {
+            if (myLibrary[n]['title'] === checker) {
+                alert("That book already exists!")
+                return
+            }
+        } 
         let j = myLibrary.length + 1
         for (let i = myLibrary.length; i < j; i++) {
             myLibrary[i] = new Books(title.value, author.value, pages.value, read.checked)

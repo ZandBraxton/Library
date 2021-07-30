@@ -18,40 +18,72 @@ html {
     flex-flow: row wrap;
     margin: auto;
     width: 100%;
-    margin-top: px;
 }
 
 .row {
     display: flex;
     flex-flow: column;
-    background-color: #32de21;
+    justify-content: flex-start;
+    background-color: #036413;
     padding: 20px;
     margin: 20px;
     outline: 2px solid black;
     width: 300px;
-    height: auto;
+    height: 350px;
+    border-radius: 25px;
+    transition: all 0.5s;
+}
+
+#read {
+    margin-bottom: auto;
 }
 
 .row button {
-    width: 100%;
-    height: auto;
-    bottom: 0;
+    display: block;
+    width: 75%;
+    margin: 5px auto 0 auto;
+    font-size: 20px;
+    letter-spacing: 0.05px;
+    border-radius: 25px;
+    border: black;
 }
 
-.read {
-    background-color: #32de21;
+#deleteBtn:hover {
+    background-color: rgb(199, 7, 7);
+    color: white;
+    
 }
+
+#readBtn:hover {
+    background-color: #810000;
+    color: white;
+    
+}
+
 
 .not-read {
-    background-color: red;
+    background-color: #810000;
+    transition: all 0.5s;
+}
+
+.not-read > #readBtn:hover {
+    background-color: #036413;
+    color: white;
 }
 
 .cell {
     font-size: 24px;
     font-family: 'Times New Roman', Times, serif;
-    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 2.9em;
+    line-height: 1.2em;
     padding: 5px;
+    color: white;
+    text-shadow: 1px 1px black;
 }
+
 
 .new-book-container {
     display: flex;
