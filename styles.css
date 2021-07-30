@@ -34,8 +34,7 @@ html {
 }
 
 .row:hover {
-    outline: 4px solid white;
-    transition: none;
+    outline: 2px solid white;
 }
 
 #read {
