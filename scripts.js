@@ -168,14 +168,16 @@ function newBook() {
 }
 
 
-function Books(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = `${pages} pages`
-    if (read === true) {
-        this.read = "Finished"
-    } else {
-        this.read = "Haven't read yet"
+class Books {
+    constructor(title, author, pages, read) {
+        this.title = title
+        this.author = author
+        this.pages = `${pages} pages`
+        if (read === true) {
+            this.read = "Finished"
+        } else {
+            this.read = "Haven't read yet"
+        }
     }
 }
 
